@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="output.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/mathjs@11.11.0/lib/browser/math.js"></script>
+        <title>Calculator - ToolBox</title>
+    </head>
+    <body class="flex flex-col items-center h-screen bg-neutral-200">
+        <nav
+            class="w-full h-12 flex justify-between items-center m-2 sticky top-0"
+        >
+            <div
+                onclick="location.href='../index.html'"
+                class="group translate w-12 h-12 cursor-pointer hover:translate-1 ease-in-out duration-300"
+            >
+                <svg
+                    class="m-2"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    ></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M2.5192 7.82274C2 8.77128 2 9.91549 2 12.2039V13.725C2 17.6258 2 19.5763 3.17157 20.7881C4.34315 22 6.22876 22 10 22H14C17.7712 22 19.6569 22 20.8284 20.7881C22 19.5763 22 17.6258 22 13.725V12.2039C22 9.91549 22 8.77128 21.4808 7.82274C20.9616 6.87421 20.0131 6.28551 18.116 5.10812L16.116 3.86687C14.1106 2.62229 13.1079 2 12 2C10.8921 2 9.88939 2.62229 7.88403 3.86687L5.88403 5.10813C3.98695 6.28551 3.0384 6.87421 2.5192 7.82274ZM9 17.25C8.58579 17.25 8.25 17.5858 8.25 18C8.25 18.4142 8.58579 18.75 9 18.75H15C15.4142 18.75 15.75 18.4142 15.75 18C15.75 17.5858 15.4142 17.25 15 17.25H9Z"
+                            fill="#262626"
+                            class="transition group-hover:fill-orange-500 ease-in-out duration-300"
+                        ></path>
+                    </g>
+                </svg>
+            </div>
+        </nav>
+
+        <div
+            id="calculator"
+            class="font-mono bg-neutral-800 rounded-2xl max-w-[30rem] overflow-hidden shadow-2xl"
+        >
+            <input
+                id="display"
+                readonly
+                class="w-full p-5 text-7xl text-right bg-neutral-700 text-white"
+            />
+            <div id="keys" class="grid grid-cols-4 gap-2.5 p-6 w-max mx-auto">
+                <button
+                    onclick="clearDisplay()"
+                    class="transition w-24 h-24 rounded-full bg-neutral-500 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-400 active:bg-neutral-300"
+                >
+                    C
+                </button>
+                <button
+                    onclick="appendToDisplay('(')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-500 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-400 active:bg-neutral-300"
+                >
+                    (
+                </button>
+                <button
+                    onclick="appendToDisplay(')')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-500 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-400 active:bg-neutral-300"
+                >
+                    )
+                </button>
+                <button
+                    onclick="appendToDisplay('/')"
+                    class="transition w-24 h-24 rounded-full bg-orange-500 text-white text-5xl font-semibold cursor-pointer hover:bg-orange-400 active:bg-orange-300"
+                >
+                    /
+                </button>
+                <button
+                    onclick="appendToDisplay('7')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    7
+                </button>
+                <button
+                    onclick="appendToDisplay('8')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    8
+                </button>
+                <button
+                    onclick="appendToDisplay('9')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    9
+                </button>
+                <button
+                    onclick="appendToDisplay('*')"
+                    class="transition w-24 h-24 rounded-full bg-orange-500 text-white text-5xl font-semibold cursor-pointer hover:bg-orange-400 active:bg-orange-300"
+                >
+                    *
+                </button>
+                <button
+                    onclick="appendToDisplay('4')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    4
+                </button>
+                <button
+                    onclick="appendToDisplay('5')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    5
+                </button>
+                <button
+                    onclick="appendToDisplay('6')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    6
+                </button>
+                <button
+                    onclick="appendToDisplay('-')"
+                    class="transition w-24 h-24 rounded-full bg-orange-500 text-white text-5xl font-semibold cursor-pointer hover:bg-orange-400 active:bg-orange-300"
+                >
+                    -
+                </button>
+                <button
+                    onclick="appendToDisplay('1')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    1
+                </button>
+                <button
+                    onclick="appendToDisplay('2')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    2
+                </button>
+                <button
+                    onclick="appendToDisplay('3')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    3
+                </button>
+                <button
+                    onclick="appendToDisplay('+')"
+                    class="transition w-24 h-24 rounded-full bg-orange-500 text-white text-5xl font-semibold cursor-pointer hover:bg-orange-400 active:bg-orange-300"
+                >
+                    +
+                </button>
+                <button
+                    onclick="deleteLast()"
+                    class="transition w-24 h-24 rounded-full bg-neutral-500 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-400 active:bg-neutral-300"
+                >
+                    <svg
+                        class="m-5 mr-6"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g
+                            id="SVGRepo_tracerCarrier"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        ></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M6.87114 19.4986C7.80085 20 8.91458 20 11.142 20H13.779C17.6544 20 19.5921 20 20.7961 18.8284C22 17.6569 22 15.7712 22 12C22 8.22876 22 6.34315 20.7961 5.17157C19.5921 4 17.6544 4 13.779 4H11.142C8.91458 4 7.80085 4 6.87114 4.50143C5.94144 5.00286 5.35117 5.92191 4.17061 7.76001L3.48981 8.82001C2.4966 10.3664 2 11.1396 2 12C2 12.8604 2.4966 13.6336 3.48981 15.18L4.17061 16.24C5.35117 18.0781 5.94144 18.9971 6.87114 19.4986ZM11.0303 8.96967C10.7374 8.67678 10.2625 8.67678 9.96965 8.96967C9.67676 9.26256 9.67676 9.73744 9.96965 10.0303L11.9393 12L9.96967 13.9697C9.67678 14.2626 9.67678 14.7374 9.96967 15.0303C10.2626 15.3232 10.7374 15.3232 11.0303 15.0303L13 13.0607L14.9696 15.0303C15.2625 15.3232 15.7374 15.3232 16.0303 15.0303C16.3232 14.7374 16.3232 14.2625 16.0303 13.9697L14.0606 12L16.0303 10.0304C16.3232 9.73746 16.3232 9.26258 16.0303 8.96969C15.7374 8.6768 15.2625 8.6768 14.9696 8.96969L13 10.9394L11.0303 8.96967Z"
+                                fill="#ffffff"
+                            ></path>
+                        </g>
+                    </svg>
+                </button>
+                <button
+                    onclick="appendToDisplay('0')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    0
+                </button>
+                <button
+                    onclick="appendToDisplay('.')"
+                    class="transition w-24 h-24 rounded-full bg-neutral-600 text-white text-5xl font-semibold cursor-pointer hover:bg-neutral-500 active:bg-neutral-400"
+                >
+                    .
+                </button>
+                <button
+                    onclick="calculate()"
+                    class="transition w-24 h-24 rounded-full bg-orange-500 text-white text-5xl font-semibold cursor-pointer hover:bg-orange-400 active:bg-orange-300"
+                >
+                    =
+                </button>
+            </div>
+        </div>
+        <script src="calculator.js"></script>
+    </body>
+</html>
