@@ -1,7 +1,7 @@
 {
     "name": "toolbox",
     "version": "1.0.0",
-    "main": "./views/index.html",
+    "main": "./docs/index.html",
     "scripts": {
         "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch"
     },
