@@ -1,7 +1,1 @@
 @import "tailwindcss";
-
-@layer components {
-    .calculator-button {
-        @apply transition w-24 h-24 rounded-full text-5xl font-semibold cursor-pointer;
-    }
-}
